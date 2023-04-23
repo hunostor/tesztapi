@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using IGym.DietGenerator.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebApplication1.ValidationAttribs
 {
@@ -8,12 +9,12 @@ namespace WebApplication1.ValidationAttribs
         {
             string val = value as string;            
             
-            if (val == "man")
+            if (val == Genders.Male.ToString())
             {
                 return ValidationResult.Success;
             }
 
-            if (val == "woman")
+            if (val == Genders.Female.ToString())
             {
                 return ValidationResult.Success;
             }

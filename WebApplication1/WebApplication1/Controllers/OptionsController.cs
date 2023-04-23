@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using IGym.DietGenerator.Repositories;
+using Microsoft.AspNetCore.Mvc;
+using Repositories;
 using System.Collections.Generic;
+using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
@@ -9,13 +12,19 @@ namespace WebApplication1.Controllers
     {
         [HttpGet]
         [Route("Genders")]
-        public IEnumerable<string> GetGenders()
+        public IEnumerable<Select> GetGenders()
         {
-            var responseList = new List<string>()
+            var repo = new GenderRepository();
+            var list = repo.GetAll();
+            var responseList = new List<Select>();
+            foreach (var item in list)
             {
-                "man",
-                "woman"
-            };
+                responseList.Add(new Select()
+                {
+                    Id = item.Id,
+                    Label = item.Name
+                });
+            }
 
             return responseList;
 
@@ -23,35 +32,38 @@ namespace WebApplication1.Controllers
 
         [HttpGet]
         [Route("Goals")]
-        public IEnumerable<string> GetGoals()
+        public IEnumerable<Select> GetGoals()
         {
-            var responseList = new List<string>()
+            var repo = new GoalsRepository();
+            var list = repo.GetAll();
+            var responseList = new List<Select>();
+            foreach (var item in list)
             {
-                "weightGain",
-                "weightLoss"
-            };
+                responseList.Add(new Select()
+                {
+                    Id = item.Id,
+                    Label = item.Name
+                });
+            }
 
             return responseList;
         }
 
         [HttpGet]
         [Route("ExclusionConditions")]
-        public IEnumerable<string> GetExclusionConditions()
+        public IEnumerable<Select> GetExclusionConditions()
         {
-            var responseList = new List<string>()
+            var repo =  new ExclusionRepository();
+            var list = repo.GetAll();
+            var responseList = new List<Select>();
+            foreach (var item in list) 
             {
-                "glutént tartalmaz",
-                "tejet tartalmaz",
-                "mogyoró tartalmú",
-                "húst tartalmaz",
-                "állati eredetüt tartalmaz",
-                "diót tartalmaz",
-                "epret tartalmaz",
-                "szója tartalmaz",
-                "mustár tartalmaz",
-                "zeller tartalmaz",
-                "szezámmag tartalmaz",
-            };
+                responseList.Add(new Select()
+                {
+                    Id = item.Id,
+                    Label = item.Name
+                });
+            }            
 
             return responseList;
         }

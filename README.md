@@ -1,15 +1,21 @@
 # tesztapi
 
 ## base url
-https://webapplication120230326124150.azurewebsites.net/
+https://webapplication120230326124150.azurewebsites.net
 
 ## Options
 ### /options/genders
 method: GET
 ```json
 [
-  "man",
-  "woman"
+  {
+    "id": 1,
+    "label": "Male"
+  },
+  {
+    "id": 2,
+    "label": "Female"
+  }
 ]
 ````
 
@@ -17,8 +23,14 @@ method: GET
 method: GET
 ```json
 [
-  "weightGain",
-  "weightLoss"
+  {
+    "id": 1,
+    "label": "WeightGain"
+  },
+  {
+    "id": 2,
+    "label": "WeightLoss"
+  }
 ]
 ````
 
@@ -26,17 +38,34 @@ method: GET
 method: GET
 ```json
 [
-  "glutént tartalmaz",
-  "tejet tartalmaz",
-  "mogyoró tartalmú",
-  "húst tartalmaz",
-  "állati eredetüt tartalmaz",
-  "diót tartalmaz",
-  "epret tartalmaz",
-  "szója tartalmaz",
-  "mustár tartalmaz",
-  "zeller tartalmaz",
-  "szezámmag tartalmaz"
+  {
+    "id": 1,
+    "label": "Laktóz allergia"
+  },
+  {
+    "id": 2,
+    "label": "Gluténmentes"
+  },
+  {
+    "id": 3,
+    "label": "Tojásallergia"
+  },
+  {
+    "id": 4,
+    "label": "Húsmentes"
+  },
+  {
+    "id": 5,
+    "label": "Tejtermék mentes"
+  },
+  {
+    "id": 6,
+    "label": "Mogyoró allergia"
+  },
+  {
+    "id": 7,
+    "label": "Zellert tartalmaz"
+  }
 ]
 ````
 
@@ -45,7 +74,7 @@ method: GET
 method: POST
 ```json
 {
-    "gender": "man",
+    "gender": "Male",
     "age": 45,
     "heigth": 180,
     "weight": 75,
@@ -53,10 +82,11 @@ method: POST
         "hard": 3,
         "light": 3
     },
-    "goal": "weightGain",
+    "goal": "WeightGain",
     "exclusionConditions": [
         "diót tartalmaz",
         "mustár tartalmaz"
     ]
 }
+
 ```

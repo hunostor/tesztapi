@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="sd\**" />
+    <EmbeddedResource Remove="sd\**" />
+    <None Remove="sd\**" />
+  </ItemGroup>
+
+</Project>

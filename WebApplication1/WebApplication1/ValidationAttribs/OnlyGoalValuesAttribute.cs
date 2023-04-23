@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using IGym.DietGenerator.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebApplication1.ValidationAttribs
 {
@@ -8,12 +9,12 @@ namespace WebApplication1.ValidationAttribs
         {
             string val = value as string;
 
-            if (val == "weightGain")
+            if (val == Goals.WeightGain.ToString())
             {
                 return ValidationResult.Success;
             }
 
-            if (val == "weightLoss")
+            if (val == Goals.WeightLoss.ToString())
             {
                 return ValidationResult.Success;
             }
