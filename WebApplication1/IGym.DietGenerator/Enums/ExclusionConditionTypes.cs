@@ -6,6 +6,11 @@ namespace IGym.DietGenerator.Enums
 {
     public enum ExclusionConditionTypes
     {
-        allergies, component
+        intolerance_or_food_allergy, 
+        meat_and_fish,
+        side_dish,
+        fruit,
+        vegetable,
+        food_stuff
     }
 }

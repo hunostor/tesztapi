@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Repositories;
 using System.Collections.Generic;
+using System.Linq;
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
@@ -50,20 +51,121 @@ namespace WebApplication1.Controllers
         }
 
         [HttpGet]
-        [Route("ExclusionConditions")]
-        public IEnumerable<Select> GetExclusionConditions()
+        [Route("exclusionintolerance")]
+        public IEnumerable<Select> GetExclusionIntolerance()
         {
-            var repo =  new ExclusionRepository();
-            var list = repo.GetAll();
+            var repo = new DummyExclusionConditionRepository();
+            var list = repo.GetAll()
+                .Where(x => x.Type == IGym.DietGenerator.Enums.ExclusionConditionTypes.intolerance_or_food_allergy);
             var responseList = new List<Select>();
-            foreach (var item in list) 
+            foreach (var item in list)
             {
                 responseList.Add(new Select()
                 {
                     Id = item.Id,
-                    Label = item.Name
+                    Label = item.Label
                 });
-            }            
+            }
+
+            return responseList;
+        }
+
+        [HttpGet]
+        [Route("exclusiondontlike/foods")]
+        public IEnumerable<Select> GetExclusionMeat()
+        {
+            var repo = new DummyExclusionConditionRepository();
+            var list = repo.GetAll()
+                .Where(x => x.Type == IGym.DietGenerator.Enums.ExclusionConditionTypes.meat_and_fish);
+            var responseList = new List<Select>();
+            foreach (var item in list)
+            {
+                responseList.Add(new Select()
+                {
+                    Id = item.Id,
+                    Label = item.Label
+                });
+            }
+
+            return responseList;
+        }
+
+        [HttpGet]
+        [Route("exclusiondontlike/sides")]
+        public IEnumerable<Select> GetExclusionSideDish()
+        {
+            var repo = new DummyExclusionConditionRepository();
+            var list = repo.GetAll()
+                .Where(x => x.Type == IGym.DietGenerator.Enums.ExclusionConditionTypes.side_dish);
+            var responseList = new List<Select>();
+            foreach (var item in list)
+            {
+                responseList.Add(new Select()
+                {
+                    Id = item.Id,
+                    Label = item.Label
+                });
+            }
+
+            return responseList;
+        }
+
+        [HttpGet]
+        [Route("exclusiondontlike/fruits")]
+        public IEnumerable<Select> GetExclusionFruits()
+        {
+            var repo = new DummyExclusionConditionRepository();
+            var list = repo.GetAll()
+                .Where(x => x.Type == IGym.DietGenerator.Enums.ExclusionConditionTypes.fruit);
+            var responseList = new List<Select>();
+            foreach (var item in list)
+            {
+                responseList.Add(new Select()
+                {
+                    Id = item.Id,
+                    Label = item.Label
+                });
+            }
+
+            return responseList;
+        }
+
+        [HttpGet]
+        [Route("exclusiondontlike/vegetables")]
+        public IEnumerable<Select> GetExclusionVegetables()
+        {
+            var repo = new DummyExclusionConditionRepository();
+            var list = repo.GetAll()
+                .Where(x => x.Type == IGym.DietGenerator.Enums.ExclusionConditionTypes.vegetable);
+            var responseList = new List<Select>();
+            foreach (var item in list)
+            {
+                responseList.Add(new Select()
+                {
+                    Id = item.Id,
+                    Label = item.Label
+                });
+            }
+
+            return responseList;
+        }
+
+        [HttpGet]
+        [Route("exclusiondontlike/ingredients")]
+        public IEnumerable<Select> GetExclusionIngredients()
+        {
+            var repo = new DummyExclusionConditionRepository();
+            var list = repo.GetAll()
+                .Where(x => x.Type == IGym.DietGenerator.Enums.ExclusionConditionTypes.food_stuff);
+            var responseList = new List<Select>();
+            foreach (var item in list)
+            {
+                responseList.Add(new Select()
+                {
+                    Id = item.Id,
+                    Label = item.Label
+                });
+            }
 
             return responseList;
         }

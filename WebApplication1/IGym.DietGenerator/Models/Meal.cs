@@ -17,7 +17,7 @@ namespace IGym.DietGenerator.Models
 
         public IEnumerable<MealTimeOfDay> MealTimeOfDay { get; set; } = new List<MealTimeOfDay>();
 
-        public IEnumerable<IMealTag> MealTags { get; set; } = new List<IMealTag>();
+        public IEnumerable<ExclusionCondition> MealTags { get; set; } = new List<ExclusionCondition>();
 
         public IEnumerable<MealIngredient> Ingredients { get; set; }
 

@@ -41,7 +41,7 @@ namespace IGym.DietGenerator.Filters
         {
             foreach (var exclusion in exclusions)
             {
-                if (meal.MealTags.Any(t => t.Name == exclusion.Name))
+                if (meal.MealTags.Any(t => t.Id == exclusion.Id))
                 {
                     return true;
                 }

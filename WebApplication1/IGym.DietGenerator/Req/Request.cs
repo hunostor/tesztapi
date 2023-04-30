@@ -14,6 +14,6 @@ namespace IGym.DietGenerator.Req
 
         public Goals Gooal { get; set; }
 
-        public IEnumerable<ExclusionCondition> ExclusionConditions { get; set; }
+        public List<ExclusionCondition> ExclusionConditions { get; set; }
     }
 }

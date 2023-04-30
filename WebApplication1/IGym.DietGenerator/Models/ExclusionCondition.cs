@@ -10,7 +10,9 @@ namespace IGym.DietGenerator.Models
     {
         public int Id { get; set; }
 
-        public string Name { get; set; }
+        public string Label { get; set; }
+
+        public string Tag { get; set; }
 
         public ExclusionConditionTypes Type { get; set; }
 

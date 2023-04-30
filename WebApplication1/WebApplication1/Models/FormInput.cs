@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using WebApplication1.ValidationAttribs;
 
@@ -29,7 +30,8 @@ namespace WebApplication1.Models
         public string Goal { get; set; }
 
         [Required]
-        [EnumerableStringLength(50)]
-        public IEnumerable<string> ExclusionConditions { get; set; }
+        [OnlyExclusionConditionId]
+        [ExclusionConditionAllowedCount(5)]
+        public int[] ExclusionConditions { get; set; }
     }
 }

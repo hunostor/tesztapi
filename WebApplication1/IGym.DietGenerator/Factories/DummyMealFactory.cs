@@ -137,7 +137,7 @@ namespace IGym.DietGenerator.Factories
         private IEnumerable<ExclusionCondition> loadConditions()
         {
             var conditions = new List<ExclusionCondition>();
-            var repository = new ExclusionRepository();
+            var repository = new DummyExclusionConditionRepository();
             var availableConditions = repository.GetAll().ToList();
             var random = new Random();
             

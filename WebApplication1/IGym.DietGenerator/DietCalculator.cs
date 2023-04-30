@@ -8,30 +8,92 @@ using IGym.DietGenerator.Req;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace IGym.DietGenerator
 {
     /// <summary>
-    /// Összetevők esetén két választási lehetőség
-    /// összetevőhöz kötelezően előírt mértékegység pl. minden esetben gramm
-    /// és akkor a bevásárlólistánál is szépen grammra megmondjuk mennyit kell vennie
+    /// "Az alábbiak közül van-e valamilyen táplálékallergiád vagy intoleranciád? (Többet is jelölhetsz)
+    /// -- Gluténérzékeny vagyok 
+    /// -- Laktózérzékeny vagyok"
     /// 
-    /// vagy a mostani megoldás az, hogy a recepthez alkalmazkodva adja a mértékegységet
-    /// ebben az esetben viszont kijöhet az, hogy pl. az egyik receptnél az étrendben 1 kanál liszt van
-    /// a másik receptben 200 gramm liszt van, ebben az esetben a bevásárló listán nem vonható össze a kettő
-    /// tétel és kb. így szerepelne, hogy "liszt 200 gramm"
-    ///                                   "liszt 3 evőkanál"
-    ///                    
+    /// type: intolerance or food_allergy
     /// 
-    /// pl. só kizárása a bevásárló listából? mert olyan termék amiből csak kevés kell és
-    /// mindenkinek van otthon, fura lenne, ha a bevásárló lista tartalmazna ilyen tételt
-    /// hogy "só 1.5 gramm"
+    /// "Jelöld ki azokat a hús és halféléket, amelyeket NEM szívesen fogyasztanál céljaid eléréséhez:
+    /// (nem kötelező jelölnöd) 
+    /// -- Szárnyasok(csirke, pulyka)
+    /// -- Vörös húsok(marha, sertés)
+    /// -- Belsőségek(máj, aprólék)
+    /// -- Nem eszem húst
+    /// -- Édesvízi- és tengeri halfilék
+    /// -- Olajos tonhalak
+    /// -- Rák, kagyló"
     /// 
+    /// type: meat_and_fish
     /// 
+    /// "Jelöld ki azokat a köreteket, amelyeket NEM szívesen fogyasztanál céljaid eléréséhez: 
+    /// (nem kötelező jelölnöd) 
+    /// -- Burgonya, édesburgonya 
+    /// -- Rizs, barnarizs
+    /// -- Köles
+    /// -- Quinoa
+    /// -- Bulgur
+    /// -- Tészta, durumtészta
+    /// -- Amaránt
+    /// -- Kuszkusz 
+    ///"
+    ///
+    /// type: side_dish
     /// 
-    /// étel tag-s, nál nem csak kizáró pl. "mogyoróallergia" feltétleek vannak, 
-    /// hanem befogalók is tehát pl. "vegán" máshogy kell vele eljárni.
+    ///
+    /// "Jelöld ki azokat a gyümölcsöket amelyeket NEM szívesen fogyasztanál céljaid eléréséhez:
+    /// (nem kötelező jelölnöd) 
+    /// -- Alma 
+    /// -- Körte
+    /// -- Banán
+    /// -- Erdei bogyós gyümölcsök(áfonya, málna, eper, szeder, ribizli)
+    /// -- Narancs
+    /// -- Mandarin
+    /// -- Ananász 
+    /// -- Dinnye
+    /// -- Szőlő
+    /// -- Kivi
+    ///"
+    ///
+    /// type: fruit
+    ///
+    /// "Jelöld ki azokat a zöldségeket amelyeket NEM szívesen fogyasztanál céljaid eléréséhez: 
+    /// (nem kötelező jelölnöd)
+    /// -- Paradicsom(hagyományos, koktél)
+    /// -- Paprika(zöld-, kalifornia-, kápia-,)
+    /// -- Uborka(kovászos-, csemege-, kígyó-,)
+    /// -- Retek(vaj-, hónapos-, fekete-, jég-,)
+    /// -- Tökfélék(cukkíni, padlizsán, sütőtök)
+    /// -- Sárgarépa 
+    /// -- Brokkoli
+    /// -- Spenót
+    /// -- Avokádó
+    /// -- Saláták(jég-, madár-, radicchio-, rukkola-,)
+    ///"
+    ///
+    /// type: vegetable
+    ///
+    /// "Jelöld ki azokat az élelmiszereket amelyeket NEM szívesen fogyasztanál céljaid eléréséhez: 
+    /// (nem kötelező jelölnöd)
+    /// -- Tej, növényi italok(szója-, mandula-, kókusz-, rizsital)
+    /// -- Tojás
+    /// -- Joghurt(natúr, görög, zsírszegény)
+    /// -- Tejföl
+    /// -- Túró, Cottage cheese
+    /// -- Sajtfélék
+    /// -- Gombafélék
+    /// -- Hüvelyesek(bab, borsó, lencse)
+    /// -- Olajos magvak(mandula, kesudió, mogyoró)
+    /// -- Húspótlók(tofu, szejtán, tempeh)
+    ///"
+    ///
+    /// type: food_stuff
     /// </summary>
     public class DietCalculator
     {
