@@ -14,9 +14,7 @@ namespace WebApplication1.Controllers
     [ApiController]
     [Route("[controller]")]
     public class FormController : ControllerBase
-    {
-        
-
+    {        
         [HttpPost]
         [Route("Input")]
         public GeneratedDietPlan Input([FromBody] FormInput input)

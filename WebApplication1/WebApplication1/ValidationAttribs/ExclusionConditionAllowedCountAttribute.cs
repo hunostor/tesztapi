@@ -18,7 +18,7 @@ namespace WebApplication1.ValidationAttribs
 
             if (conditionIds.Length > _count)
             {
-                return new ValidationResult($"Exclusion Condition authorised number of: {_count}");
+                return new ValidationResult($"Exclusion Condition max number of: {_count}");
             }          
 
             return ValidationResult.Success;

@@ -10,10 +10,12 @@ namespace IGym.DietGenerator.Req
     {
         public Human Human { get; set; }
 
-        public WeeklyWorkout WeeklyWorkout { get; set; } = new WeeklyWorkout();
+        public WeeklyWorkout WeeklyWorkout { get; set; } 
+            = new WeeklyWorkout();
 
         public Goals Gooal { get; set; }
 
-        public List<ExclusionCondition> ExclusionConditions { get; set; }
+        public List<ExclusionCondition> ExclusionConditions { get; set; } 
+            = new List<ExclusionCondition>();
     }
 }
