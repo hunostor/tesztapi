@@ -33,18 +33,10 @@ namespace IGym.DietGenerator.Repositories
                 Tag = "Szárnyasok",
                 Description = "",
                 Type = Enums.ExclusionConditionTypes.meat_and_fish
-            },
+            },            
             new ExclusionCondition()
             {
                 Id = 4,
-                Label = "Szárnyasok(csirke, pulyka)",
-                Tag = "Szárnyasok",
-                Description = "",
-                Type = Enums.ExclusionConditionTypes.meat_and_fish
-            },
-            new ExclusionCondition()
-            {
-                Id = 5,
                 Label = "Vörös húsok(marha, sertés)",
                 Tag = "Vörös húsok",
                 Description = "",
@@ -52,7 +44,7 @@ namespace IGym.DietGenerator.Repositories
             },
             new ExclusionCondition()
             {
-                Id = 6,
+                Id = 5,
                 Label = "Belsőségek(máj, aprólék)",
                 Tag = "Belsőségek",
                 Description = "",
@@ -60,7 +52,7 @@ namespace IGym.DietGenerator.Repositories
             },
             new ExclusionCondition()
             {
-                Id = 7,
+                Id = 6,
                 Label = "Nem eszem húst",
                 Tag = "Hústartalom",
                 Description = "",
@@ -68,7 +60,7 @@ namespace IGym.DietGenerator.Repositories
             },
             new ExclusionCondition()
             {
-                Id = 8,
+                Id = 7,
                 Label = "Édesvízi- és tengeri halfilék",
                 Tag = "Haltartalom",
                 Description = "",
@@ -76,7 +68,7 @@ namespace IGym.DietGenerator.Repositories
             },
             new ExclusionCondition()
             {
-                Id = 9,
+                Id = 8,
                 Label = "Olajos tonhalak",
                 Tag = "Olajos tonhalak",
                 Description = "",
@@ -84,7 +76,7 @@ namespace IGym.DietGenerator.Repositories
             },
             new ExclusionCondition()
             {
-                Id = 10,
+                Id = 9,
                 Label = "Rák, kagyló",
                 Tag = "Rák, kagyló",
                 Description = "",
@@ -92,7 +84,7 @@ namespace IGym.DietGenerator.Repositories
             },
             new ExclusionCondition()
             {
-                Id = 11,
+                Id = 10,
                 Label = "Burgonya, édesburgonya",
                 Tag = "Burgonya, édesburgonya",
                 Description = "",
@@ -100,7 +92,7 @@ namespace IGym.DietGenerator.Repositories
             },
             new ExclusionCondition()
             {
-                Id = 12,
+                Id = 11,
                 Label = "Rizs, barnarizs",
                 Tag = "Rizs, barnarizs",
                 Description = "",
@@ -108,7 +100,7 @@ namespace IGym.DietGenerator.Repositories
             },
             new ExclusionCondition()
             {
-                Id = 13,
+                Id = 12,
                 Label = "Köles",
                 Tag = "Köles",
                 Description = "",
@@ -116,7 +108,7 @@ namespace IGym.DietGenerator.Repositories
             },
             new ExclusionCondition()
             {
-                Id = 14,
+                Id = 13,
                 Label = "Quinoa",
                 Tag = "Quinoa",
                 Description = "",
@@ -124,7 +116,7 @@ namespace IGym.DietGenerator.Repositories
             },
             new ExclusionCondition()
             {
-                Id = 15,
+                Id = 14,
                 Label = "Bulgur",
                 Tag = "Bulgur",
                 Description = "",
@@ -132,7 +124,7 @@ namespace IGym.DietGenerator.Repositories
             },
             new ExclusionCondition()
             {
-                Id = 16,
+                Id = 15,
                 Label = "Tészta, durumtészta",
                 Tag = "Tészta, durumtészta",
                 Description = "",
@@ -140,7 +132,7 @@ namespace IGym.DietGenerator.Repositories
             },
             new ExclusionCondition()
             {
-                Id = 17,
+                Id = 16,
                 Label = "Amaránt",
                 Tag = "Amaránt",
                 Description = "",
@@ -148,7 +140,7 @@ namespace IGym.DietGenerator.Repositories
             },
             new ExclusionCondition()
             {
-                Id = 18,
+                Id = 17,
                 Label = "Kuszkusz",
                 Tag = "Kuszkusz",
                 Description = "",
@@ -156,7 +148,7 @@ namespace IGym.DietGenerator.Repositories
             },
             new ExclusionCondition()
             {
-                Id = 19,
+                Id = 18,
                 Label = "Alma",
                 Tag = "Alma",
                 Description = "",
@@ -164,7 +156,7 @@ namespace IGym.DietGenerator.Repositories
             },
             new ExclusionCondition()
             {
-                Id = 20,
+                Id = 19,
                 Label = "Körte",
                 Tag = "Körte",
                 Description = "",
@@ -172,7 +164,7 @@ namespace IGym.DietGenerator.Repositories
             },
             new ExclusionCondition()
             {
-                Id = 21,
+                Id = 20,
                 Label = "Banán",
                 Tag = "Banán",
                 Description = "",
@@ -180,7 +172,7 @@ namespace IGym.DietGenerator.Repositories
             },
             new ExclusionCondition()
             {
-                Id = 22,
+                Id = 21,
                 Label = "Erdei bogyós gyümölcsök(áfonya, málna, eper, szeder, ribizli)",
                 Tag = "Erdei bogyós gyümölcsök",
                 Description = "",
@@ -188,7 +180,7 @@ namespace IGym.DietGenerator.Repositories
             },
             new ExclusionCondition()
             {
-                Id = 23,
+                Id = 22,
                 Label = "Narancs",
                 Tag = "Narancs",
                 Description = "",
@@ -196,7 +188,7 @@ namespace IGym.DietGenerator.Repositories
             },
             new ExclusionCondition()
             {
-                Id = 24,
+                Id = 23,
                 Label = "Mandarin",
                 Tag = "Mandarin",
                 Description = "",
@@ -204,7 +196,7 @@ namespace IGym.DietGenerator.Repositories
             },
             new ExclusionCondition()
             {
-                Id = 25,
+                Id = 24,
                 Label = "Ananász",
                 Tag = "Ananász",
                 Description = "",
@@ -212,7 +204,7 @@ namespace IGym.DietGenerator.Repositories
             },
             new ExclusionCondition()
             {
-                Id = 26,
+                Id = 25,
                 Label = "Dinnye",
                 Tag = "Dinnye",
                 Description = "",
@@ -220,7 +212,7 @@ namespace IGym.DietGenerator.Repositories
             },
             new ExclusionCondition()
             {
-                Id = 27,
+                Id = 26,
                 Label = "Szőlő",
                 Tag = "Szőlő",
                 Description = "",
@@ -228,7 +220,7 @@ namespace IGym.DietGenerator.Repositories
             },
             new ExclusionCondition()
             {
-                Id = 28,
+                Id = 27,
                 Label = "Kivi",
                 Tag = "Kivi",
                 Description = "",
@@ -236,7 +228,7 @@ namespace IGym.DietGenerator.Repositories
             },
             new ExclusionCondition()
             {
-                Id = 29,
+                Id = 28,
                 Label = "Paradicsom(hagyományos, koktél)",
                 Tag = "Paradicsom",
                 Description = "",
@@ -244,7 +236,7 @@ namespace IGym.DietGenerator.Repositories
             },
             new ExclusionCondition()
             {
-                Id = 30,
+                Id = 29,
                 Label = "Paprika(zöld-, kalifornia-, kápia-,)",
                 Tag = "Paprika",
                 Description = "",
@@ -252,7 +244,7 @@ namespace IGym.DietGenerator.Repositories
             },
             new ExclusionCondition()
             {
-                Id = 31,
+                Id = 30,
                 Label = "Uborka(kovászos-, csemege-, kígyó-,)",
                 Tag = "Uborka",
                 Description = "",
@@ -260,7 +252,7 @@ namespace IGym.DietGenerator.Repositories
             },
             new ExclusionCondition()
             {
-                Id = 32,
+                Id = 31,
                 Label = "Retek(vaj-, hónapos-, fekete-, jég-,)",
                 Tag = "Retek",
                 Description = "",
@@ -268,7 +260,7 @@ namespace IGym.DietGenerator.Repositories
             },
             new ExclusionCondition()
             {
-                Id = 33,
+                Id = 32,
                 Label = "Tökfélék(cukkíni, padlizsán, sütőtök)",
                 Tag = "Tökfélék(cukkíni, padlizsán, sütőtök)",
                 Description = "",
@@ -276,7 +268,7 @@ namespace IGym.DietGenerator.Repositories
             },
             new ExclusionCondition()
             {
-                Id = 34,
+                Id = 33,
                 Label = "Sárgarépa",
                 Tag = "Sárgarépa",
                 Description = "",
@@ -284,7 +276,7 @@ namespace IGym.DietGenerator.Repositories
             },
             new ExclusionCondition()
             {
-                Id = 35,
+                Id = 34,
                 Label = "Brokkoli",
                 Tag = "Brokkoli",
                 Description = "",
@@ -292,7 +284,7 @@ namespace IGym.DietGenerator.Repositories
             },
             new ExclusionCondition()
             {
-                Id = 36,
+                Id = 35,
                 Label = "Spenót",
                 Tag = "Spenót",
                 Description = "",
@@ -300,7 +292,7 @@ namespace IGym.DietGenerator.Repositories
             },
             new ExclusionCondition()
             {
-                Id = 37,
+                Id = 36,
                 Label = "Avokádó",
                 Tag = "Avokádó",
                 Description = "",
@@ -308,7 +300,7 @@ namespace IGym.DietGenerator.Repositories
             },
             new ExclusionCondition()
             {
-                Id = 38,
+                Id = 37,
                 Label = "Saláták(jég-, madár-, radicchio-, rukkola-,)",
                 Tag = "Saláta",
                 Description = "",
@@ -316,7 +308,7 @@ namespace IGym.DietGenerator.Repositories
             },
             new ExclusionCondition()
             {
-                Id = 39,
+                Id = 38,
                 Label = "Tej, növényi italok(szója-, mandula-, kókusz-, rizsital)",
                 Tag = "Tej, növényi italok",
                 Description = "",
@@ -325,14 +317,6 @@ namespace IGym.DietGenerator.Repositories
             new ExclusionCondition()
             {
                 Id = 39,
-                Label = "Tej, növényi italok(szója-, mandula-, kókusz-, rizsital)",
-                Tag = "Tej, növényi italok",
-                Description = "",
-                Type = Enums.ExclusionConditionTypes.food_stuff
-            },
-            new ExclusionCondition()
-            {
-                Id = 40,
                 Label = "Tojás",
                 Tag = "Tojás",
                 Description = "",
@@ -340,7 +324,7 @@ namespace IGym.DietGenerator.Repositories
             },
             new ExclusionCondition()
             {
-                Id = 41,
+                Id = 40,
                 Label = "Joghurt(natúr, görög, zsírszegény)",
                 Tag = "Joghurt",
                 Description = "",
@@ -348,7 +332,7 @@ namespace IGym.DietGenerator.Repositories
             },
             new ExclusionCondition()
             {
-                Id = 42,
+                Id = 41,
                 Label = "Tejföl",
                 Tag = "Tejföl",
                 Description = "",
@@ -356,7 +340,7 @@ namespace IGym.DietGenerator.Repositories
             },
             new ExclusionCondition()
             {
-                Id = 43,
+                Id = 42,
                 Label = "Túró, Cottage cheese",
                 Tag = "Túró, Cottage cheese",
                 Description = "",
@@ -364,7 +348,7 @@ namespace IGym.DietGenerator.Repositories
             },
             new ExclusionCondition()
             {
-                Id = 44,
+                Id = 43,
                 Label = "Sajtfélék",
                 Tag = "Sajtfélék",
                 Description = "",
@@ -372,7 +356,7 @@ namespace IGym.DietGenerator.Repositories
             },
             new ExclusionCondition()
             {
-                Id = 45,
+                Id = 44,
                 Label = "Gombafélék",
                 Tag = "Gombafélék",
                 Description = "",
@@ -380,7 +364,7 @@ namespace IGym.DietGenerator.Repositories
             },
             new ExclusionCondition()
             {
-                Id = 46,
+                Id = 45,
                 Label = "Hüvelyesek(bab, borsó, lencse)",
                 Tag = "Hüvelyesek",
                 Description = "",
@@ -388,7 +372,7 @@ namespace IGym.DietGenerator.Repositories
             },
             new ExclusionCondition()
             {
-                Id = 47,
+                Id = 46,
                 Label = "Olajos magvak(mandula, kesudió, mogyoró)",
                 Tag = "Olajos magvak",
                 Description = "",
@@ -396,7 +380,7 @@ namespace IGym.DietGenerator.Repositories
             },
             new ExclusionCondition()
             {
-                Id = 48,
+                Id = 47,
                 Label = "Húspótlók(tofu, szejtán, tempeh)",
                 Tag = "Húspótlók",
                 Description = "",
