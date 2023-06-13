@@ -8,6 +8,10 @@ namespace WebApplication1.Models
     public class FormInput
     {
         [Required]
+        [StringLength(50)]
+        public string UserId { get; set; }
+
+        [Required]
         [OnlyGenderId]
         public int Gender { get; set; }
 

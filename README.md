@@ -298,6 +298,7 @@ method: GET
 method: POST
 ```json
 {
+    "userId": "sfd4fg3443", // string max 50 char
     "gender": 2, // Female
     "age": 45,
     "heigth": 180,
