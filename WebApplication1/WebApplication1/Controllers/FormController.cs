@@ -4,6 +4,7 @@ using IGym.DietGenerator.Models;
 using IGym.DietGenerator.Repositories;
 using IGym.DietGenerator.Req;
 using Microsoft.AspNetCore.Mvc;
+using Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,10 @@ namespace WebApplication1.Controllers
                 var dietCalculatorConfig = new Config();
                 var dietCalculatorBuilder = new DietCalculatorBuilder();
                 var conditionsRepo = new DummyExclusionConditionRepository();
+                var genderRepo = new GenderRepository();
+                var genders = genderRepo.GetAll();
+                var goalsRepo = new GoalsRepository();
+                var goals = goalsRepo.GetAll();
                 var conditions = conditionsRepo.GetAll();
                 var dummyMealCount = 250;
                 var dietCalculator = dietCalculatorBuilder.Build(dietCalculatorConfig, dummyMealCount);
@@ -32,7 +37,7 @@ namespace WebApplication1.Controllers
                 {
                     Human = new Human()
                     {
-                        Gender = (Genders)Enum.Parse(typeof(Genders), input.Gender),
+                        Gender = (Genders)Enum.Parse(typeof(Genders), genders.Single(ge => ge.Id == input.Gender).Name),
                         Age = input.Age,
                         Heigth = input.Heigth,
                         Weight = input.Weight
@@ -42,7 +47,7 @@ namespace WebApplication1.Controllers
                         Hard = input.WeeklyWorkout.Hard,
                         Light = input.WeeklyWorkout.Light,
                     },
-                    Gooal = (Goals)Enum.Parse(typeof(Goals), input.Goal)
+                    Gooal = (Goals)Enum.Parse(typeof(Goals), goals.Single(goal => goal.Id == input.Goal).Name)
                 };
 
                 foreach (var item in input.ExclusionConditions)

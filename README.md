@@ -4,6 +4,34 @@
 https://webapplication120230326124150.azurewebsites.net
 
 ## Options
+### /options/trainers
+method: GET
+```json
+[
+  {
+    "id": 1,
+    "label": "Trainer 1"
+  },
+  {
+    "id": 2,
+    "label": "Trainer 2"
+  },
+  {
+    "id": 3,
+    "label": "Trainer 3"
+  },
+  {
+    "id": 4,
+    "label": "Trainer 4"
+  },
+  {
+    "id": 5,
+    "label": "Trainer 5"
+  }
+]
+````
+
+## Options
 ### /options/genders
 method: GET
 ```json
@@ -59,30 +87,26 @@ method: GET
   },
   {
     "id": 4,
-    "label": "Szárnyasok(csirke, pulyka)"
-  },
-  {
-    "id": 5,
     "label": "Vörös húsok(marha, sertés)"
   },
   {
-    "id": 6,
+    "id": 5,
     "label": "Belsőségek(máj, aprólék)"
   },
   {
-    "id": 7,
+    "id": 6,
     "label": "Nem eszem húst"
   },
   {
-    "id": 8,
+    "id": 7,
     "label": "Édesvízi- és tengeri halfilék"
   },
   {
-    "id": 9,
+    "id": 8,
     "label": "Olajos tonhalak"
   },
   {
-    "id": 10,
+    "id": 9,
     "label": "Rák, kagyló"
   }
 ]
@@ -93,35 +117,35 @@ method: GET
 ```json
 [
   {
-    "id": 11,
+    "id": 10,
     "label": "Burgonya, édesburgonya"
   },
   {
-    "id": 12,
+    "id": 11,
     "label": "Rizs, barnarizs"
   },
   {
-    "id": 13,
+    "id": 12,
     "label": "Köles"
   },
   {
-    "id": 14,
+    "id": 13,
     "label": "Quinoa"
   },
   {
-    "id": 15,
+    "id": 14,
     "label": "Bulgur"
   },
   {
-    "id": 16,
+    "id": 15,
     "label": "Tészta, durumtészta"
   },
   {
-    "id": 17,
+    "id": 16,
     "label": "Amaránt"
   },
   {
-    "id": 18,
+    "id": 17,
     "label": "Kuszkusz"
   }
 ]
@@ -132,43 +156,43 @@ method: GET
 ```json
 [
   {
-    "id": 19,
+    "id": 18,
     "label": "Alma"
   },
   {
-    "id": 20,
+    "id": 19,
     "label": "Körte"
   },
   {
-    "id": 21,
+    "id": 20,
     "label": "Banán"
   },
   {
-    "id": 22,
+    "id": 21,
     "label": "Erdei bogyós gyümölcsök(áfonya, málna, eper, szeder, ribizli)"
   },
   {
-    "id": 23,
+    "id": 22,
     "label": "Narancs"
   },
   {
-    "id": 24,
+    "id": 23,
     "label": "Mandarin"
   },
   {
-    "id": 25,
+    "id": 24,
     "label": "Ananász"
   },
   {
-    "id": 26,
+    "id": 25,
     "label": "Dinnye"
   },
   {
-    "id": 27,
+    "id": 26,
     "label": "Szőlő"
   },
   {
-    "id": 28,
+    "id": 27,
     "label": "Kivi"
   }
 ]
@@ -179,44 +203,44 @@ method: GET
 method: GET
 ```json
 [
-  {
-    "id": 29,
+  
+    "id": 28,
     "label": "Paradicsom(hagyományos, koktél)"
   },
   {
-    "id": 30,
+    "id": 29,
     "label": "Paprika(zöld-, kalifornia-, kápia-,)"
   },
   {
-    "id": 31,
+    "id": 30,
     "label": "Uborka(kovászos-, csemege-, kígyó-,)"
   },
   {
-    "id": 32,
+    "id": 31,
     "label": "Retek(vaj-, hónapos-, fekete-, jég-,)"
   },
   {
-    "id": 33,
+    "id": 32,
     "label": "Tökfélék(cukkíni, padlizsán, sütőtök)"
   },
   {
-    "id": 34,
+    "id": 33,
     "label": "Sárgarépa"
   },
   {
-    "id": 35,
+    "id": 34,
     "label": "Brokkoli"
   },
   {
-    "id": 36,
+    "id": 35,
     "label": "Spenót"
   },
   {
-    "id": 37,
+    "id": 36,
     "label": "Avokádó"
   },
   {
-    "id": 38,
+    "id": 37,
     "label": "Saláták(jég-, madár-, radicchio-, rukkola-,)"
   }
 ]
@@ -227,47 +251,43 @@ method: GET
 ```json
 [
   {
-    "id": 39,
+    "id": 38,
     "label": "Tej, növényi italok(szója-, mandula-, kókusz-, rizsital)"
   },
   {
     "id": 39,
-    "label": "Tej, növényi italok(szója-, mandula-, kókusz-, rizsital)"
-  },
-  {
-    "id": 40,
     "label": "Tojás"
   },
   {
-    "id": 41,
+    "id": 40,
     "label": "Joghurt(natúr, görög, zsírszegény)"
   },
   {
-    "id": 42,
+    "id": 41,
     "label": "Tejföl"
   },
   {
-    "id": 43,
+    "id": 42,
     "label": "Túró, Cottage cheese"
   },
   {
-    "id": 44,
+    "id": 43,
     "label": "Sajtfélék"
   },
   {
-    "id": 45,
+    "id": 44,
     "label": "Gombafélék"
   },
   {
-    "id": 46,
+    "id": 45,
     "label": "Hüvelyesek(bab, borsó, lencse)"
   },
   {
-    "id": 47,
+    "id": 46,
     "label": "Olajos magvak(mandula, kesudió, mogyoró)"
   },
   {
-    "id": 48,
+    "id": 47,
     "label": "Húspótlók(tofu, szejtán, tempeh)"
   }
 ]
@@ -278,7 +298,7 @@ method: GET
 method: POST
 ```json
 {
-    "gender": "Male",
+    "gender": 2, // Female
     "age": 45,
     "heigth": 180,
     "weight": 75,
@@ -286,7 +306,7 @@ method: POST
         "hard": 3,
         "light": 3
     },
-    "goal": "WeightGain",
+    "goal": 2, // WeightLoss
     "exclusionConditions": [
         23, 2, 12
     ]

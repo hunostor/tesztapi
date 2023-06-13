@@ -8,26 +8,27 @@ namespace WebApplication1.Models
     public class FormInput
     {
         [Required]
-        [StringLength(100)]
-        [OnlyGenderValues]
-        public string Gender { get; set; }
+        [OnlyGenderId]
+        public int Gender { get; set; }
 
         [Range(18, 120)]
+        [Required]
         public int Age { get; set; }
 
         [Range(140, 230)]
+        [Required]
         public int Heigth { get; set; }
 
         [Range(40, 250)]
+        [Required]
         public int Weight { get; set; }
 
         [Required]
         public WeeklyWorkout WeeklyWorkout{ get; set; }
 
         [Required]
-        [StringLength(100)]
-        [OnlyGoalValues]
-        public string Goal { get; set; }
+        [OnlyGoalId]
+        public int Goal { get; set; }
 
         [Required]
         [OnlyExclusionConditionId]

@@ -1,20 +1,21 @@
 ﻿using IGym.DietGenerator.Enums;
+using Repositories;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace WebApplication1.ValidationAttribs
 {
-    public class OnlyGoalValuesAttribute : ValidationAttribute
+    public class OnlyGoalIdAttribute : ValidationAttribute
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            string val = value as string;
+            int val = (int)value;
+            var repos = new GoalsRepository();
+            var goalList = repos.GetAll();
 
-            if (val == Goals.WeightGain.ToString())
-            {
-                return ValidationResult.Success;
-            }
+            var goal = goalList.SingleOrDefault(g => g.Id == val);
 
-            if (val == Goals.WeightLoss.ToString())
+            if (goal != null)
             {
                 return ValidationResult.Success;
             }
