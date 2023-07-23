@@ -27,7 +27,7 @@ namespace IGym.DietGenerator.CalorieCalculator
 
             baseCalorie = this.calculateWorkout(baseCalorie, request);
 
-            baseCalorie = this._goalCalorieModifier.ModifyDalyCalories(baseCalorie, request.Human.Weight, request.Gooal);
+            baseCalorie = this._goalCalorieModifier.ModifyDalyCalories(baseCalorie, request.Human.Weight, request.Goal);
 
             return baseCalorie;
         }

@@ -8,9 +8,10 @@ namespace IGym.DietGenerator.DietPlan
 {
     public class DailyDietPlan
     {
-        public DaysOfTheWeek DayName { get; set; }
+        public string DayName { get; set; }
+        public DateTime Date { get; set; }
         public List<SelectedMeal> AllMeal { get; set; } = new List<SelectedMeal>();
-        public Calorie Calorie { get; set; } = new Calorie(0);
+        public int Calorie { get; set; } = 0;
         public SelectedMeal Breakfast { get; set; }
         public SelectedMeal Snack1 { get; set; }
         public SelectedMeal Lunch { get; set; }

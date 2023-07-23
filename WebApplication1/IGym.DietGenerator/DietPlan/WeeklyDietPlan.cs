@@ -10,7 +10,7 @@ namespace IGym.DietGenerator.DietPlan
     public class WeeklyDietPlan
     {
         public List<SelectedMeal> AllMeal { get; set; } = new List<SelectedMeal>();
-        public Calorie Calorie { get; set; } = new Calorie(0);
+        public int Calorie { get; set; } = 0;
         public DailyDietPlan Monday { get; set; }
         public DailyDietPlan Tuesday { get; set; }
         public DailyDietPlan Wednesday { get; set; }

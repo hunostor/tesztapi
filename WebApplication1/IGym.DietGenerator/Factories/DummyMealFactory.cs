@@ -72,6 +72,8 @@ namespace IGym.DietGenerator.Factories
                 mealIng.IngredientName = ingrident.Name;
                 mealIng.Quantity = random.Next(1, 25);
                 mealIng.Unit = ingrident.Unit;
+                mealIng.CategoryId = ingrident.CategoryId;
+                mealIng.CategoryName = ingrident.CategoryName;
                 result.Add(mealIng);
             }
 

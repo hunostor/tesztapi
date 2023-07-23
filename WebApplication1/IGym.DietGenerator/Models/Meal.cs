@@ -15,11 +15,19 @@ namespace IGym.DietGenerator.Models
 
         public Calorie Calorie { get; set; }
 
+        public int Protein { get; set; } = 0;
+
+        public int Carboydrate { get; set; } = 0;
+
+        public int Fat { get; set; } = 0;
+
         public IEnumerable<MealTimeOfDay> MealTimeOfDay { get; set; } = new List<MealTimeOfDay>();
 
         public IEnumerable<ExclusionCondition> MealTags { get; set; } = new List<ExclusionCondition>();
 
         public IEnumerable<MealIngredient> Ingredients { get; set; }
+
+        public string ImageUrl { get; set; }
 
         public SelectedMeal ToSelected()
         {
@@ -27,10 +35,14 @@ namespace IGym.DietGenerator.Models
             {
                 MealId = this.MealId,
                 Name = this.Name,
-                Calorie = this.Calorie,
+                Calorie = (int)this.Calorie.Value,
+                Protein = this.Protein,
+                Carboydrate = this.Carboydrate,
+                Fat = this.Fat,
                 MealTimeOfDay = this.MealTimeOfDay,
                 MealTags = this.MealTags,                
                 Ingredients = this.Ingredients,
+                ImageUrl = this.ImageUrl,
             };
 
             return selected;
@@ -43,9 +55,13 @@ namespace IGym.DietGenerator.Models
                 MealId = this.MealId,
                 Name = this.Name,
                 Calorie = this.Calorie,
+                Protein = this.Protein,
+                Carboydrate = this.Carboydrate,
+                Fat = this.Fat,
                 MealTimeOfDay = this.MealTimeOfDay,
                 MealTags = this.MealTags,
-                Ingredients= this.Ingredients,
+                Ingredients = this.Ingredients,
+                ImageUrl = this.ImageUrl,
             };
         }
     }

@@ -32,10 +32,10 @@ namespace IGym.DietGenerator.DietPlan
             _timeTrace = timeTrace;
         }
 
-        public DailyDietPlan Build()
+        public DailyDietPlan Build(DaysOfTheWeek dayName)
         {
-            //var clonedMeals = _meals.DeepClone().ToList();
             var result = new DailyDietPlan();
+            //result.DayName = dayName;
 
             result.Breakfast = selectMeal(MealTimeOfDay.Breakfast, _selectedMeals);
             var timeTrace = new TimeTrace()
@@ -92,22 +92,17 @@ namespace IGym.DietGenerator.DietPlan
             return result;
         }
 
-        private Calorie addToAllCalorie(DailyDietPlan dailyDietPlan)
+        private int addToAllCalorie(DailyDietPlan dailyDietPlan)
         {
             Calorie result = new Calorie(0);
 
-            result += dailyDietPlan.Breakfast.Calorie;
-            result += dailyDietPlan.Snack1.Calorie;
-            result += dailyDietPlan.Lunch.Calorie;
-            result += dailyDietPlan.Snack2.Calorie;
-            result += dailyDietPlan.Dinner.Calorie;
+            result += new Calorie(dailyDietPlan.Breakfast.Calorie);
+            result += new Calorie(dailyDietPlan.Snack1.Calorie);
+            result += new Calorie(dailyDietPlan.Lunch.Calorie);
+            result += new Calorie(dailyDietPlan.Snack2.Calorie);
+            result += new Calorie(dailyDietPlan.Dinner.Calorie);
 
-            return result;
-        }
-
-        private void removeSelectedMeal(Meal selectedMeal, List<SelectedMeal> mealList)
-        {
-            var deletedMeals = mealList.RemoveAll(m => m.MealId == selectedMeal.MealId);
+            return (int)result.Value;
         }
 
         private SelectedMeal selectMeal(MealTimeOfDay mealTimeOfDay, List<SelectedMeal> mealList)
@@ -117,19 +112,18 @@ namespace IGym.DietGenerator.DietPlan
             var calorieRange = _dailyCalorieRange[timeOfDay];
             
             var available = mealList
-                .Where(m => (m.Calorie < calorieRange.High && m.Calorie > calorieRange.Low) &&
+                .Where(m => (m.Calorie < calorieRange.High.Value && m.Calorie > calorieRange.Low.Value) &&
                     m.MealTimeOfDay.Any(m => m == mealTimeOfDay) && m.Trace.Count == 0);
 
             if (available.Count() == 0)
             {
                 available = mealList
-                .Where(m => (m.Calorie < calorieRange.High && m.Calorie > calorieRange.Low) &&
+                .Where(m => (m.Calorie < calorieRange.High.Value && m.Calorie > calorieRange.Low.Value) &&
                     m.MealTimeOfDay.Any(m => m == mealTimeOfDay) && m.Trace.Count > 0);
             }
 
             var availableList = available.ToList();
             var selectedMeal = availableList[rand.Next(availableList.Count)];
-            //removeSelectedMeal(selectedMeal, mealList);
             return selectedMeal;
         }
     }

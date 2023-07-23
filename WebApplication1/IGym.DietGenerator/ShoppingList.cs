@@ -12,10 +12,10 @@ namespace IGym.DietGenerator
 
         public IList<ShoppingListIngredient> FirstWeek { get; set; }
             = new List<ShoppingListIngredient>();
-        
+
         public IList<ShoppingListIngredient> SecondWeek { get; set; }
             = new List<ShoppingListIngredient>();
-        
+
         public IList<ShoppingListIngredient> ThirdWeek { get; set; }
             = new List<ShoppingListIngredient>();
 

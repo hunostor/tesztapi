@@ -49,17 +49,11 @@ namespace IGym.DietGenerator.DietPlan
                     trace
                     );
 
-                var dailyPlan = dailyBuilder.Build();
+                var dailyPlan = dailyBuilder.Build(dayName);
 
                 result[dayName.ToString()] = dailyPlan;
                 result.Calorie = result.Calorie + dailyPlan.Calorie;
                 result.AllMeal.AddRange(dailyPlan.AllMeal);
-
-                //removeMeal(dailyPlan.Breakfast, _selectedMeals);
-                //removeMeal(dailyPlan.Snack1, _selectedMeals);
-                //removeMeal(dailyPlan.Lunch, _selectedMeals);
-                //removeMeal(dailyPlan.Snack2, _selectedMeals);
-                //removeMeal(dailyPlan.Dinner, _selectedMeals);
             }
 
             return result;

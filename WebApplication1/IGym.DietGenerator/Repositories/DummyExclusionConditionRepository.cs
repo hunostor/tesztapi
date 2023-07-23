@@ -33,7 +33,7 @@ namespace IGym.DietGenerator.Repositories
                 Tag = "Szárnyasok",
                 Description = "",
                 Type = Enums.ExclusionConditionTypes.meat_and_fish
-            },            
+            },
             new ExclusionCondition()
             {
                 Id = 4,
