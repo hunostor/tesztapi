@@ -298,8 +298,8 @@ method: GET
 method: POST
 ```json
 {
-    "userId": "sfd4fg3443", // string max 50 char
-    "gender": 2, // Female
+    "userId": "dfgdgd4534", // random
+    "gender": 1, // 0 = Female, 1 = Male
     "age": 45,
     "heigth": 180,
     "weight": 75,
@@ -307,10 +307,15 @@ method: POST
         "hard": 3,
         "light": 3
     },
-    "goal": 2, // WeightLoss
+    "goal": 2,
     "exclusionConditions": [
-        23, 2, 12
-    ]
+        1, 2, 3, 4, 5
+    ],
+    "startday": {
+        "year": 2023,
+        "month": 6,
+        "day": 30
+    }
 }
 
 ```

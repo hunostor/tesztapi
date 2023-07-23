@@ -28,7 +28,7 @@ namespace WebApplication1.Models
         public int Weight { get; set; }
 
         [Required]
-        public WeeklyWorkout WeeklyWorkout{ get; set; }
+        public WeeklyWorkout WeeklyWorkout { get; set; }
 
         [Required]
         [OnlyGoalId]
@@ -38,5 +38,8 @@ namespace WebApplication1.Models
         [OnlyExclusionConditionId]
         [ExclusionConditionAllowedCount(5)]
         public int[] ExclusionConditions { get; set; }
+
+        [Required]
+        public StartDayInput StartDay {get; set;}
     }
 }

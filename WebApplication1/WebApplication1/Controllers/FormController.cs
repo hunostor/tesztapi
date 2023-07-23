@@ -48,7 +48,7 @@ namespace WebApplication1.Controllers
                         Light = input.WeeklyWorkout.Light,
                     },
                     Goal = (Goals)Enum.Parse(typeof(Goals), goals.Single(goal => goal.Id == input.Goal).Name),
-                    StartDay = new DateTime(2023, 6, 30)
+                    StartDay = new DateTime(input.StartDay.Year, input.StartDay.Month, input.StartDay.Day)
                 };
 
                 foreach (var item in input.ExclusionConditions)
