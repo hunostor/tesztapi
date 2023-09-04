@@ -11,80 +11,58 @@ namespace IGym.DietGenerator.DietPlan
 {
     public class DailyPlanBuilder
     {
-        private readonly List<Meal> _meals;
         private readonly List<SelectedMeal> _selectedMeals;
-        private readonly Calorie _dailyCalorieRequirement;
         private readonly DailyCalorieRange _dailyCalorieRange;
         private readonly TimeTrace _timeTrace;
+        public List<SelectedMeal> MealCache { get; set; } = new List<SelectedMeal>();
 
         public DailyPlanBuilder(
-            IEnumerable<Meal> originalMealList,
             IEnumerable<SelectedMeal> selectedMeals,
-            Calorie dailyCalorieRequirement, 
             DailyCalorieRange dailyCalorieRange,
             TimeTrace timeTrace
             )
         {
-            _meals = originalMealList.ToList();
             _selectedMeals = selectedMeals.ToList();
-            _dailyCalorieRequirement = dailyCalorieRequirement;
             _dailyCalorieRange = dailyCalorieRange;
             _timeTrace = timeTrace;
         }
 
-        public DailyDietPlan Build(DaysOfTheWeek dayName)
+        private TimeTrace setTimeTrace(TimeTrace timeTrace, MealTimeOfDay mealTimeOfDay)
+        {
+            var tt = new TimeTrace()
+            {
+                Week = timeTrace.Week,
+                Day = timeTrace.Day,
+                DayName = timeTrace.DayName,
+                TimeOfDay = mealTimeOfDay,
+                DateTime = timeTrace.DateTime,
+            };
+
+            return tt;
+        }
+
+        public DailyDietPlan Build()
         {
             var result = new DailyDietPlan();
-            //result.DayName = dayName;
 
             result.Breakfast = selectMeal(MealTimeOfDay.Breakfast, _selectedMeals);
-            var timeTrace = new TimeTrace()
-            {
-                Week = _timeTrace.Week,
-                Day = _timeTrace.Day,
-                TimeOfDay = MealTimeOfDay.Breakfast
-            };
-            result.Breakfast.Trace.Add(timeTrace);            
+            result.Breakfast.Trace.Add(setTimeTrace(_timeTrace, MealTimeOfDay.Breakfast));            
             result.AllMeal.Add(result.Breakfast);
 
             result.Snack1 = selectMeal(MealTimeOfDay.Snack1, _selectedMeals);
-            timeTrace = new TimeTrace()
-            {
-                Week = _timeTrace.Week,
-                Day = _timeTrace.Day,
-                TimeOfDay = MealTimeOfDay.Snack1
-            };
-            result.Snack1.Trace.Add(timeTrace);
+            result.Snack1.Trace.Add(setTimeTrace(_timeTrace, MealTimeOfDay.Snack1));
             result.AllMeal.Add(result.Snack1);
 
             result.Lunch = selectMeal(MealTimeOfDay.Lunch, _selectedMeals);
-            timeTrace = new TimeTrace()
-            {
-                Week = _timeTrace.Week,
-                Day = _timeTrace.Day,
-                TimeOfDay = MealTimeOfDay.Lunch
-            };
-            result.Lunch.Trace.Add(timeTrace);           
+            result.Lunch.Trace.Add(setTimeTrace(_timeTrace, MealTimeOfDay.Lunch));
             result.AllMeal.Add(result.Lunch);
 
             result.Snack2 = selectMeal(MealTimeOfDay.Snack2, _selectedMeals);
-            timeTrace = new TimeTrace()
-            {
-                Week = _timeTrace.Week,
-                Day = _timeTrace.Day,
-                TimeOfDay = MealTimeOfDay.Snack2
-            };
-            result.Snack2.Trace.Add(timeTrace);
+            result.Snack2.Trace.Add(setTimeTrace(_timeTrace, MealTimeOfDay.Snack2));
             result.AllMeal.Add(result.Snack2);
 
             result.Dinner = selectMeal(MealTimeOfDay.Dinner, _selectedMeals);
-            timeTrace = new TimeTrace()
-            {
-                Week = _timeTrace.Week,
-                Day = _timeTrace.Day,
-                TimeOfDay = MealTimeOfDay.Dinner
-            };
-            result.Dinner.Trace.Add(timeTrace);            
+            result.Dinner.Trace.Add(setTimeTrace(_timeTrace, MealTimeOfDay.Dinner));
             result.AllMeal.Add(result.Dinner);
 
             result.Calorie = addToAllCalorie(result);
@@ -107,6 +85,17 @@ namespace IGym.DietGenerator.DietPlan
 
         private SelectedMeal selectMeal(MealTimeOfDay mealTimeOfDay, List<SelectedMeal> mealList)
         {
+            // Ha van tobb adagos kaja, akkor azt kell betenni, nincsen valasztas
+            // todo finomitani kell, mi van ha az etel tobbadagos nem csak ketto
+            if (MealCache.Any(m => m.Trace.Any(t => t.TimeOfDay == mealTimeOfDay))) 
+            {
+                var portionMeal = MealCache.Single(m => m.Trace.Any(t => t.TimeOfDay == mealTimeOfDay));
+                // torolni a felhasznalt meal-t
+                MealCache.Remove(portionMeal);
+                return portionMeal;
+            }
+
+
             var rand = new Random();
             var timeOfDay = mealTimeOfDay.ToString();
             var calorieRange = _dailyCalorieRange[timeOfDay];
@@ -124,6 +113,13 @@ namespace IGym.DietGenerator.DietPlan
 
             var availableList = available.ToList();
             var selectedMeal = availableList[rand.Next(availableList.Count)];
+
+            // tobb adagos kajak mentese ide
+            if (selectedMeal.Portion > 1) 
+            {
+                MealCache.Add(selectedMeal);
+            }
+
             return selectedMeal;
         }
     }

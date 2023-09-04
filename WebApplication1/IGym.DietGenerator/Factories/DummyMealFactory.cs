@@ -17,6 +17,8 @@ namespace IGym.DietGenerator.Factories
         private readonly int _lowCalorie = 150;
         private readonly int _maxCalorie = 1250;
 
+        private readonly int _maxPortion = 4;
+
         public IEnumerable<Meal> GetMeals(int count)
         {
             var result = new List<Meal>();
@@ -48,7 +50,8 @@ namespace IGym.DietGenerator.Factories
                 Calorie = new Calorie(rand.Next(_lowCalorie, _maxCalorie)),
                 MealTimeOfDay = mealTimeOfDay,
                 MealTags = conditions,
-                Ingredients = generateIngredients(mealId)
+                Ingredients = generateIngredients(mealId),
+                Portion = rand.Next(1, _maxPortion+1),
             };
         }
 
@@ -98,7 +101,8 @@ namespace IGym.DietGenerator.Factories
                     Calorie = new Calorie(rand.Next(_lowCalorie, _maxCalorie)),
                     MealTimeOfDay = mealTimeOfDay,
                     MealTags = conditions,
-                    Ingredients = meal.Ingredients
+                    Ingredients = meal.Ingredients,
+                    Portion = meal.Portion,
                 };
 
                 result.Add(newMeal);

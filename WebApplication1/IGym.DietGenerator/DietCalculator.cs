@@ -14,9 +14,6 @@ using System.Linq;
 
 namespace IGym.DietGenerator
 {
-    /// <summary>
-    /// todo a dátumok még nem a megfelelőek a bevásárlólistákhoz, ellenőrizni kell, hogy mi a gond
-    /// </summary>
     public class DietCalculator
     {
         private readonly ICalorieCalculator _calorieCalculator;
@@ -42,17 +39,20 @@ namespace IGym.DietGenerator
             var dailyCalorie = _calorieCalculator.CalculateDaliyCalorie(request);
             var calorieRange = _callorieAllocation.Calculate(dailyCalorie);
 
-            var builder = new MonthlyDietPlanBuilder(allMeal, dailyCalorie, calorieRange);
+            var builder = new MonthlyDietPlanBuilder(allMeal, calorieRange);
             var dietPlan = builder.Build();
 
-            List<DailyDietPlan> dayList = transformDayList(dietPlan, request.StartDay);            
+            //List<DailyDietPlan> dayList = transformDayList(dietPlan, request.StartDay);            
+            List<DailyDietPlan> dayList = createDiet(allMeal, calorieRange, request.StartDay, _dayCount);
             
             var result = new GeneratedDietPlan();
             result.StartDay = request.StartDay;
             result.Request = request;
             result.Diet = dayList;
+            result.AllMeal = generateAllMeal(dayList);
             result.Timestamp = DateTime.UtcNow;
-            var shoppingList = generateShoppingList(dietPlan);
+            //ShoppingList shoppingList = generateShoppingList(dietPlan);
+            ShoppingList shoppingList = generateShoppingList(result);
 
             // generate categoryzed shopping list
             // one week
@@ -67,6 +67,128 @@ namespace IGym.DietGenerator
             result.ShoppingList.Weeks.Add(cIFouth);
 
             return result;
+        }
+
+        private ShoppingList generateShoppingList(GeneratedDietPlan dietPlan)
+        {
+            var result = new ShoppingList();
+            // monthly
+            generateMonthlyList(result, dietPlan.AllMeal);
+
+            var firstWeek = dietPlan.Diet.Where(m => m.Week == WeekNames.FirstWeek).ToList();
+            var secondWeek = dietPlan.Diet.Where(m => m.Week == WeekNames.SecondWeek).ToList();
+            var thirdWeek = dietPlan.Diet.Where(m => m.Week == WeekNames.ThirdWeek).ToList();
+            var fourhtWeek = dietPlan.Diet.Where(m => m.Week == WeekNames.FourhtWeek).ToList();
+
+            var meals = new List<SelectedMeal>();
+            foreach ( var dailyDietPlan in firstWeek ) 
+            {
+                meals.AddRange(dailyDietPlan.AllMeal);
+            }
+            generateFirstWeek(result, dietPlan.AllMeal);
+
+            meals = new List<SelectedMeal>();
+            foreach (var dailyDietPlan in secondWeek)
+            {
+                meals.AddRange(dailyDietPlan.AllMeal);
+            }
+            generateSecondWeek(result, dietPlan.AllMeal);
+
+            meals = new List<SelectedMeal>();
+            foreach (var dailyDietPlan in thirdWeek)
+            {
+                meals.AddRange(dailyDietPlan.AllMeal);
+            }
+            generateThirdWeek(result, dietPlan.AllMeal);
+
+            meals = new List<SelectedMeal>();
+            foreach (var dailyDietPlan in fourhtWeek)
+            {
+                meals.AddRange(dailyDietPlan.AllMeal);
+            }
+            generateFourhtWeek(result, dietPlan.AllMeal);
+
+            return result;
+        }
+
+        private ShoppingList generateShoppingList(MonthlyDietPlan monthlyDietPlan)
+        {
+            var result = new ShoppingList();
+            // monthly
+            generateMonthlyList(result, monthlyDietPlan.AllMeal);
+            generateFirstWeek(result, monthlyDietPlan.FirstWeek.AllMeal);
+            generateSecondWeek(result, monthlyDietPlan.SecondWeek.AllMeal);
+            generateThirdWeek(result, monthlyDietPlan.ThirdWeek.AllMeal);
+            generateFourhtWeek(result, monthlyDietPlan.ThirdWeek.AllMeal);
+
+            return result;
+        }
+
+        private List<SelectedMeal> generateAllMeal(List<DailyDietPlan> dayList)
+        {
+            var result = new List<SelectedMeal>();
+
+            foreach (var day in dayList) 
+            {
+                result.AddRange(day.AllMeal);
+            }
+
+            return result;
+        }
+
+        private List<DailyDietPlan> createDiet(
+            IEnumerable<Meal> allMeals, DailyCalorieRange dailyCalorieRange, DateTime startDay, int dayCount)
+        {
+            var result = new List<DailyDietPlan>();
+
+            var selectedMealList = allMeals.Select(m => m.ToSelected()).ToList();
+            var culture = new CultureInfo("hu-HU");
+            var dateTimeFormatInfo = culture.DateTimeFormat;
+            var dayNames = dateTimeFormatInfo.DayNames;
+
+            for (int i = 0; i < dayCount; i++) 
+            {
+                var date = startDay.AddDays(i);
+                int dayOfWeekCount = (int)date.DayOfWeek;
+                var dayName = dayNames[dayOfWeekCount];
+                var timeTrace = new TimeTrace()
+                {
+                    DateTime = date,
+                    DayName = dayName,
+                };
+                var builder = new DailyPlanBuilder(selectedMealList, dailyCalorieRange, timeTrace);
+                var plan = builder.Build();
+                plan.Date = date;
+                plan.DayName = dayName;
+                plan.Week = setWeekName(i);
+                result.Add(plan);
+            }
+
+            return result;
+        }
+
+        private WeekNames setWeekName(int dayCount)
+        {
+            if (dayCount >= 0 && dayCount <= 6)
+            {
+                return WeekNames.FirstWeek;
+            } 
+            else if ((dayCount >= 7 && dayCount <= 13))
+            {
+                return WeekNames.SecondWeek;
+            }
+            else if ((dayCount >= 14 && dayCount <= 20))
+            {
+                return WeekNames.ThirdWeek;
+            }
+            else if ((dayCount >= 21 && dayCount <= 27))
+            {
+                return WeekNames.FourhtWeek;
+            }
+            else
+            {
+                return WeekNames.FirstWeek;
+            }
         }
 
         private ShoppingListResponseItem categoryzedIngredients(IList<ShoppingListIngredient> oneWeek, DateTime startDay, int addDays)
@@ -146,25 +268,11 @@ namespace IGym.DietGenerator
 
             return dayCounter;
         }
+        
 
-        private ShoppingList generateShoppingList(MonthlyDietPlan monthlyDietPlan)
+        private void generateFourhtWeek(ShoppingList result, List<SelectedMeal> allMeal)
         {
-            var shopping = new ShoppingListResponse();
-            
-            var result = new ShoppingList();
-            // monthly
-            generateMonthlyList(result, monthlyDietPlan);
-            generateFirstWeek(result, monthlyDietPlan);
-            generateSecondWeek(result, monthlyDietPlan);
-            generateThirdWeek(result, monthlyDietPlan);
-            generateFourhtWeek(result, monthlyDietPlan);
-
-            return result;
-        }
-
-        private void generateFourhtWeek(ShoppingList result, MonthlyDietPlan monthlyDietPlan)
-        {
-            foreach (var meal in monthlyDietPlan.FourhtWeek.AllMeal)
+            foreach (var meal in allMeal)
             {
                 foreach (var mealIngredient in meal.Ingredients)
                 {
@@ -189,11 +297,11 @@ namespace IGym.DietGenerator
             }
         }
 
-        private void generateThirdWeek(ShoppingList result, MonthlyDietPlan monthlyDietPlan)
+        private void generateThirdWeek(ShoppingList result, List<SelectedMeal> allMeal)
         {
             var item = new ShoppingListResponseItem();
             
-            foreach (var meal in monthlyDietPlan.ThirdWeek.AllMeal)
+            foreach (var meal in allMeal)
             {
                 foreach (var mealIngredient in meal.Ingredients)
                 {
@@ -219,9 +327,9 @@ namespace IGym.DietGenerator
             }
         }
 
-        private void generateSecondWeek(ShoppingList result, MonthlyDietPlan monthlyDietPlan)
+        private void generateSecondWeek(ShoppingList result, List<SelectedMeal> allMeal)
         {
-            foreach (var meal in monthlyDietPlan.SecondWeek.AllMeal)
+            foreach (var meal in allMeal)
             {
                 foreach (var mealIngredient in meal.Ingredients)
                 {
@@ -246,9 +354,9 @@ namespace IGym.DietGenerator
             }
         }
 
-        private void generateFirstWeek(ShoppingList result, MonthlyDietPlan monthlyDietPlan)
+        private void generateFirstWeek(ShoppingList result, List<SelectedMeal> allMeal)
         {
-            foreach (var meal in monthlyDietPlan.FirstWeek.AllMeal)
+            foreach (var meal in allMeal)
             {
                 foreach (var mealIngredient in meal.Ingredients)
                 {
@@ -273,9 +381,9 @@ namespace IGym.DietGenerator
             }
         }
 
-        private void generateMonthlyList(ShoppingList result, MonthlyDietPlan monthlyDietPlan)
+        private void generateMonthlyList(ShoppingList result, List<SelectedMeal> allMeal)
         {
-            foreach (var meal in monthlyDietPlan.AllMeal)
+            foreach (var meal in allMeal)
             {
                 foreach (var mealIngredient in meal.Ingredients)
                 {

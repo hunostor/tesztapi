@@ -10,13 +10,11 @@ namespace IGym.DietGenerator.DietPlan
     public class MonthlyDietPlanBuilder
     {
         private readonly List<Meal> _originalMealList;
-        private readonly Calorie _dailyCalorieRequirement;
         private readonly DailyCalorieRange _dailyCalorieRange;
 
-        public MonthlyDietPlanBuilder(IEnumerable<Meal> meals, Calorie dailyCalorieRequirement, DailyCalorieRange dailyCalorieRange)
+        public MonthlyDietPlanBuilder(IEnumerable<Meal> meals, DailyCalorieRange dailyCalorieRange)
         {
             _originalMealList = meals.ToList();
-            _dailyCalorieRequirement = dailyCalorieRequirement;
             _dailyCalorieRange = dailyCalorieRange;
         }
 
@@ -27,9 +25,7 @@ namespace IGym.DietGenerator.DietPlan
             var selectedMealList = _originalMealList.Select(m => m.ToSelected()).ToList();
 
             var weeklyPlanBuilder = new WeeklyDietPlanBuilder(
-                _originalMealList,
                 selectedMealList,
-                _dailyCalorieRequirement, 
                 _dailyCalorieRange, 
                 Enums.WeekNames.FirstWeek);
             result.FirstWeek = weeklyPlanBuilder.Build();
@@ -37,9 +33,7 @@ namespace IGym.DietGenerator.DietPlan
             result.AllMeal.AddRange(result.FirstWeek.AllMeal);
 
             weeklyPlanBuilder = new WeeklyDietPlanBuilder(
-                _originalMealList,
                 selectedMealList,
-                _dailyCalorieRequirement, 
                 _dailyCalorieRange, 
                 Enums.WeekNames.SecondWeek);
             result.SecondWeek = weeklyPlanBuilder.Build();
@@ -47,9 +41,7 @@ namespace IGym.DietGenerator.DietPlan
             result.AllMeal.AddRange(result.SecondWeek.AllMeal);
 
             weeklyPlanBuilder = new WeeklyDietPlanBuilder(
-                _originalMealList,
                 selectedMealList,
-                _dailyCalorieRequirement, 
                 _dailyCalorieRange, 
                 Enums.WeekNames.ThirdWeek);
             result.ThirdWeek = weeklyPlanBuilder.Build();
@@ -57,9 +49,7 @@ namespace IGym.DietGenerator.DietPlan
             result.AllMeal.AddRange(result.ThirdWeek.AllMeal);
 
             weeklyPlanBuilder = new WeeklyDietPlanBuilder(
-                _originalMealList,
                 selectedMealList,
-                _dailyCalorieRequirement, 
                 _dailyCalorieRange, 
                 Enums.WeekNames.FourhtWeek);
             result.FourhtWeek = weeklyPlanBuilder.Build();

@@ -4,6 +4,42 @@
 https://webapplication120230326124150.azurewebsites.net
 
 ## Options
+### /options/days
+method: GET
+```json
+[
+  {
+    "id": 1,
+    "label": "Hétfő"
+  },
+  {
+    "id": 2,
+    "label": "Kedd"
+  },
+  {
+    "id": 3,
+    "label": "Szerda"
+  },
+  {
+    "id": 4,
+    "label": "Csütörtök"
+  },
+  {
+    "id": 5,
+    "label": "Péntek"
+  },
+  {
+    "id": 6,
+    "label": "Szombat"
+  },
+  {
+    "id": 7,
+    "label": "Vasárnap"
+  }
+]
+````
+
+## Options
 ### /options/trainingdurations
 method: GET
 ```json
@@ -339,7 +375,14 @@ method: POST
         "year": 2023,
         "month": 6,
         "day": 30
-    }
+    },
+    "preferredTrainingDuration": 2,
+    "trainers": [
+      3, 5
+    ],
+    "availableDays": [
+      1, 5, 6
+    ]
 }
 
 ```

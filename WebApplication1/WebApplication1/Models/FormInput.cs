@@ -41,5 +41,12 @@ namespace WebApplication1.Models
 
         [Required]
         public StartDayInput StartDay {get; set;}
+
+        public int PreferredTrainingDuration { get; set; }
+
+        public int[] Trainers { get; set; }
+
+        public int[] AvailableDays { get; set; }
+        
     }
 }

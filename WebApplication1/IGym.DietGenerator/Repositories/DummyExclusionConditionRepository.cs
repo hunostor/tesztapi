@@ -12,6 +12,11 @@ namespace IGym.DietGenerator.Repositories
         {
             new ExclusionCondition()
             {
+                Id = 0,
+                Label = "None",
+            },
+            new ExclusionCondition()
+            {
                 Id = 1,
                 Label = "Gluténérzékeny vagyok",
                 Tag = "Glutén",

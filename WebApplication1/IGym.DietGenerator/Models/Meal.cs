@@ -11,7 +11,9 @@ namespace IGym.DietGenerator.Models
     {
         public string MealId { get; set; }
 
-        public string Name { get; set; }        
+        public string Name { get; set; }
+
+        public int Portion { get; set; }
 
         public Calorie Calorie { get; set; }
 
@@ -20,6 +22,12 @@ namespace IGym.DietGenerator.Models
         public int Carboydrate { get; set; } = 0;
 
         public int Fat { get; set; } = 0;
+
+        public IEnumerable<PreparationStep> PreparationSteps { get; set; }
+
+        public int PreparationTime { get; set; }
+
+        public int Rating { get; set; }
 
         public IEnumerable<MealTimeOfDay> MealTimeOfDay { get; set; } = new List<MealTimeOfDay>();
 
@@ -35,6 +43,7 @@ namespace IGym.DietGenerator.Models
             {
                 MealId = this.MealId,
                 Name = this.Name,
+                Portion = this.Portion,
                 Calorie = (int)this.Calorie.Value,
                 Protein = this.Protein,
                 Carboydrate = this.Carboydrate,
@@ -43,6 +52,7 @@ namespace IGym.DietGenerator.Models
                 MealTags = this.MealTags,                
                 Ingredients = this.Ingredients,
                 ImageUrl = this.ImageUrl,
+                PreparationSteps = this.PreparationSteps,
             };
 
             return selected;
@@ -54,6 +64,7 @@ namespace IGym.DietGenerator.Models
             {
                 MealId = this.MealId,
                 Name = this.Name,
+                Portion = this.Portion,
                 Calorie = this.Calorie,
                 Protein = this.Protein,
                 Carboydrate = this.Carboydrate,
@@ -62,6 +73,7 @@ namespace IGym.DietGenerator.Models
                 MealTags = this.MealTags,
                 Ingredients = this.Ingredients,
                 ImageUrl = this.ImageUrl,
+                PreparationSteps = this.PreparationSteps,
             };
         }
     }

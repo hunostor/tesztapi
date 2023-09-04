@@ -10,5 +10,9 @@ namespace IGym.DietGenerator.Models
         public WeekNames Week { get; set; }
         public DaysOfTheWeek Day { get; set; }
         public MealTimeOfDay TimeOfDay { get; set; }
+
+        public DateTime DateTime { get; set; }
+
+        public string DayName { get; set; }
     }
 }

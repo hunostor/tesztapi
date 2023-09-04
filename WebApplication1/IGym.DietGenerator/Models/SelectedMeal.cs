@@ -15,11 +15,19 @@ namespace IGym.DietGenerator.Models
 
         public string Name { get; set; }
 
+        public int Portion { get; set; }
+
         public int Protein { get; set; } = 0;
 
         public int Carboydrate { get; set; } = 0;
 
         public int Fat { get; set; } = 0;
+
+        public IEnumerable<PreparationStep> PreparationSteps { get; set; }
+
+        public int PreparationTime { get; set; }
+
+        public int Rating { get; set; }
 
         public IEnumerable<MealTimeOfDay> MealTimeOfDay { get; set; } = new List<MealTimeOfDay>();
 

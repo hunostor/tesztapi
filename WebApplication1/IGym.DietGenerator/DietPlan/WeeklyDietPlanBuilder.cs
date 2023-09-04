@@ -11,23 +11,17 @@ namespace IGym.DietGenerator.DietPlan
 {
     public class WeeklyDietPlanBuilder
     {
-        private readonly List<Meal> _originalMealList;
         private readonly List<SelectedMeal> _selectedMeals;
-        private readonly Calorie _dailyCalorieRequirement;
         private readonly DailyCalorieRange _dailyCalorieRange;
         private readonly WeekNames _weekName;
 
         public WeeklyDietPlanBuilder(
-            IEnumerable<Meal> meals,
             List<SelectedMeal> selectedMeals,
-            Calorie dailyCalorieRequirement, 
             DailyCalorieRange dailyCalorieRange,
             WeekNames weekName
             )
         {
-            _originalMealList = meals.ToList();
             _selectedMeals = selectedMeals;
-            _dailyCalorieRequirement = dailyCalorieRequirement;
             _dailyCalorieRange = dailyCalorieRange;
             _weekName = weekName;
         }
@@ -42,14 +36,12 @@ namespace IGym.DietGenerator.DietPlan
                 trace.Week = _weekName;
                 trace.Day = dayName;
                 var dailyBuilder = new DailyPlanBuilder(
-                    _originalMealList,
                     _selectedMeals, 
-                    _dailyCalorieRequirement, 
                     _dailyCalorieRange,
                     trace
                     );
 
-                var dailyPlan = dailyBuilder.Build(dayName);
+                var dailyPlan = dailyBuilder.Build();
 
                 result[dayName.ToString()] = dailyPlan;
                 result.Calorie = result.Calorie + dailyPlan.Calorie;
@@ -57,11 +49,6 @@ namespace IGym.DietGenerator.DietPlan
             }
 
             return result;
-        }
-
-        private void removeMeal(Meal meal, List<SelectedMeal> meals)
-        {
-            meals.RemoveAll(m => m.MealId == meal.MealId && m.Name == meal.Name);
         }
     }
 }
