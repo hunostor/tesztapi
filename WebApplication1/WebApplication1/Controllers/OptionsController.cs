@@ -12,6 +12,26 @@ namespace WebApplication1.Controllers
     public class OptionsController : ControllerBase
     {
         [HttpGet]
+        [Route("TrainingDurations")]
+        public IEnumerable<Select> GetTrainingDurations()
+        {
+            var repo = new TrainingDurationRepository();
+            var list = repo.GetAll();
+            var responseList = new List<Select>();
+            foreach (var item in list)
+            {
+                responseList.Add(new Select()
+                {
+                    Id = item.Id,
+                    Label = item.Duration
+                });
+            }
+
+            return responseList;
+
+        }
+
+        [HttpGet]
         [Route("Trainers")]
         public IEnumerable<Select> GetTrainers()
         {

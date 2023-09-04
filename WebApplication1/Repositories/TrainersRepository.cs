@@ -11,6 +11,11 @@ namespace Repositories
         {
             new Trainer()
             {
+                Id = 0,
+                Name = "None",
+            },
+            new Trainer()
+            {
                 Id = 1,
                 Name = "Trainer 1",
             },

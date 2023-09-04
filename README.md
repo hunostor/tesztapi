@@ -4,10 +4,34 @@
 https://webapplication120230326124150.azurewebsites.net
 
 ## Options
+### /options/trainingdurations
+method: GET
+```json
+[
+  {
+    "id": 1,
+    "label": "20-35 perc"
+  },
+  {
+    "id": 2,
+    "label": "40-60 perc"
+  },
+  {
+    "id": 3,
+    "label": "60+ perc"
+  }
+]
+````
+
+## Options
 ### /options/trainers
 method: GET
 ```json
 [
+  {
+    "id": 0,
+    "label": "None"
+  },
   {
     "id": 1,
     "label": "Trainer 1"
