@@ -397,5 +397,10 @@ namespace IGym.DietGenerator.Repositories
         {
             return _list;
         }
+
+        //public ExclusionCondition GetById(int id)
+        //{
+
+        //}
     }
 }

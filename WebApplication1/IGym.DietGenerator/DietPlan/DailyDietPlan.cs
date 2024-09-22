@@ -8,16 +8,14 @@ namespace IGym.DietGenerator.DietPlan
 {
     public class DailyDietPlan
     {
-        public string DayName { get; set; }
-        public DateTime Date { get; set; }
-        public WeekNames Week { get; set; }
-        public List<SelectedMeal> AllMeal { get; set; } = new List<SelectedMeal>();
+        public ADay Day { get; set; }
+        public int BulletNumber { get; set; }
+        public int Week { get; set; }
         public int Calorie { get; set; } = 0;
-        public SelectedMeal Breakfast { get; set; }
-        public SelectedMeal Snack1 { get; set; }
-        public SelectedMeal Lunch { get; set; }
-        public SelectedMeal Snack2 { get; set; }
-        public SelectedMeal Dinner { get; set; }
+
+        public DailyIngridientList Ingridients { get; set; }
+
+        public List<SelectedMeal> Meals { get; } = new List<SelectedMeal>();
 
     }
 }

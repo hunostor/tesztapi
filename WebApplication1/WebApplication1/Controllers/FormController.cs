@@ -1,5 +1,6 @@
 ﻿using IGym.DietGenerator;
 using IGym.DietGenerator.Enums;
+using IGym.DietGenerator.Filters;
 using IGym.DietGenerator.Models;
 using IGym.DietGenerator.Repositories;
 using IGym.DietGenerator.Req;
@@ -22,16 +23,21 @@ namespace WebApplication1.Controllers
         {
             if (ModelState.IsValid)
             {
+                var mealFilterWrapper = new MealFilterWrapper(new ExclusionConditionFilter());
+                var dummyMealCount = 250;
                 var dietCalculatorConfig = new Config();
-                var dietCalculatorBuilder = new DietCalculatorBuilder();
+                var dietCalculatorBuilder = new DietCalculatorBuilder(
+                    new DummyMealRepository(dummyMealCount),
+                    mealFilterWrapper
+                    );
                 var conditionsRepo = new DummyExclusionConditionRepository();
                 var genderRepo = new GenderRepository();
                 var genders = genderRepo.GetAll();
                 var goalsRepo = new GoalsRepository();
                 var goals = goalsRepo.GetAll();
                 var conditions = conditionsRepo.GetAll();
-                var dummyMealCount = 250;
-                var dietCalculator = dietCalculatorBuilder.Build(dietCalculatorConfig, dummyMealCount);
+                
+                var dietCalculator = dietCalculatorBuilder.Build(dietCalculatorConfig);
 
                 var request = new Request()
                 {

@@ -43,7 +43,7 @@ namespace IGym.DietGenerator.Factories
             var mealTimeOfDay = loadMealOfTimeDay();
             var conditions = loadConditions();
 
-            return new Meal
+            var newMeal = new Meal
             {
                 Name = Guid.NewGuid().ToString(),
                 MealId = mealId,
@@ -51,8 +51,51 @@ namespace IGym.DietGenerator.Factories
                 MealTimeOfDay = mealTimeOfDay,
                 MealTags = conditions,
                 Ingredients = generateIngredients(mealId),
-                Portion = rand.Next(1, _maxPortion+1),
+                Portion = randomPortion(rand)                
             };
+
+            newMeal.GlutenFree = randomGlutenOrLactoseFree(rand, newMeal);
+            newMeal.LactoseFree = randomGlutenOrLactoseFree(rand, newMeal);
+
+            return newMeal;
+        }
+
+        private bool randomGlutenOrLactoseFree(Random rand, Meal meal)
+        {
+            bool result = false;
+
+            int randomCount = rand.Next(1, 5);
+
+            if (randomCount < 1) 
+            {
+                return result;
+            }
+            else
+            {
+                result = true;
+
+                foreach (var ingridient in meal.Ingredients) 
+                {
+                    ingridient.GlutenFree = rand.Next(1, 5) > 1 ? false : true;
+                    ingridient.LactoseFree = rand.Next(1, 5) > 1 ? false : true;
+                }
+            }
+
+            return result;
+        }
+
+        private int randomPortion(Random rand)
+        {
+            var randomInt = rand.Next(1, 10);
+
+            if (randomInt < 5) 
+            {
+                return 1;
+            }
+            else 
+            {
+                return rand.Next(2, _maxPortion + 1);
+            }
         }
 
         private IEnumerable<MealIngredient> generateIngredients(string mealId)
@@ -111,7 +154,7 @@ namespace IGym.DietGenerator.Factories
             return result;
         }
 
-        private IEnumerable<MealTimeOfDay> loadMealOfTimeDay()
+        private IEnumerable<string> loadMealOfTimeDay()
         {
             var mealOfTimes = new List<MealTimeOfDay>()
             {
@@ -123,18 +166,18 @@ namespace IGym.DietGenerator.Factories
             };
 
             var rand = new Random();
-            var result = new List<MealTimeOfDay>();
+            var result = new List<string>();
 
             int howManyPieces = rand.Next(1, 5);
 
             for (int i = 0; i < howManyPieces; i++)
             {
                 var MealTimeOfDay = mealOfTimes[rand.Next(5)];
-                while (result.Any(m => m == MealTimeOfDay))
+                while (result.Any(m => m == MealTimeOfDay.ToString()))
                 {
                     MealTimeOfDay = mealOfTimes[rand.Next(5)];
                 }
-                result.Add(MealTimeOfDay);
+                result.Add(MealTimeOfDay.ToString());
             }
 
             return result;

@@ -29,13 +29,21 @@ namespace IGym.DietGenerator.Models
 
         public int Rating { get; set; }
 
-        public IEnumerable<MealTimeOfDay> MealTimeOfDay { get; set; } = new List<MealTimeOfDay>();
+        public IEnumerable<string> MealTimeOfDay { get; set; } = new List<string>();
 
         public IEnumerable<ExclusionCondition> MealTags { get; set; } = new List<ExclusionCondition>();
 
         public IEnumerable<MealIngredient> Ingredients { get; set; }
 
         public string ImageUrl { get; set; }
+
+        public bool Vegan { get; set; } = false;
+
+        public bool Vegetarian { get; set; } = false;
+
+        public bool LactoseFree { get; set; } = false;
+
+        public bool GlutenFree { get; set; } = false;
 
         public SelectedMeal ToSelected()
         {
@@ -53,6 +61,10 @@ namespace IGym.DietGenerator.Models
                 Ingredients = this.Ingredients,
                 ImageUrl = this.ImageUrl,
                 PreparationSteps = this.PreparationSteps,
+                Vegan = this.Vegan,
+                Vegetarian = this.Vegetarian,
+                LactoseFree = this.LactoseFree,
+                GlutenFree = this.GlutenFree
             };
 
             return selected;
@@ -74,6 +86,10 @@ namespace IGym.DietGenerator.Models
                 Ingredients = this.Ingredients,
                 ImageUrl = this.ImageUrl,
                 PreparationSteps = this.PreparationSteps,
+                Vegan = this.Vegan,
+                Vegetarian = this.Vegetarian,
+                LactoseFree = this.LactoseFree,
+                GlutenFree = this.GlutenFree
             };
         }
     }

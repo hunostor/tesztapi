@@ -15,6 +15,8 @@ namespace IGym.DietGenerator.Models
 
         public string CategoryName { get; set; }
 
+        public string Note { get; set; }
+
         public UnitOfMeasurements Unit { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace IGym.DietGenerator.Models
     {
         public IList<TimeTrace> Trace { get; set; } = new List<TimeTrace>();
 
-        public int Calorie { get; set; }
+        public int Calorie { get; set; } = 0;
 
         public string MealId { get; set; }
 
@@ -29,12 +29,20 @@ namespace IGym.DietGenerator.Models
 
         public int Rating { get; set; }
 
-        public IEnumerable<MealTimeOfDay> MealTimeOfDay { get; set; } = new List<MealTimeOfDay>();
+        public IEnumerable<string> MealTimeOfDay { get; set; } = new List<string>();
 
         public IEnumerable<ExclusionCondition> MealTags { get; set; } = new List<ExclusionCondition>();
 
         public IEnumerable<MealIngredient> Ingredients { get; set; }
 
         public string ImageUrl { get; set; }
+
+        public bool Vegan { get; set; } = false;
+
+        public bool Vegetarian { get; set; } = false;
+
+        public bool LactoseFree { get; set; } = false;
+
+        public bool GlutenFree { get; set; } = false;
     }
 }

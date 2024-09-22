@@ -18,5 +18,13 @@ namespace IGym.DietGenerator.Models
         public string CategoryName { get; set; }
 
         public decimal Quantity { get; set; }
+
+        public bool Vegan { get; set; } = false;
+
+        public bool Vegetarian { get; set; } = false;
+
+        public bool LactoseFree { get; set; } = false;
+
+        public bool GlutenFree { get; set; } = false;
     }
 }

@@ -7,6 +7,9 @@ namespace IGym.DietGenerator
 {
     public class ShoppingList
     {
+        public IList<WeekShoppingList> List { get; set; }
+            = new List<WeekShoppingList>();
+
         public IList<ShoppingListIngredient> Monthly { get; set; }
             = new List<ShoppingListIngredient>();
 

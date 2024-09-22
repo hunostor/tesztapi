@@ -7,9 +7,9 @@ namespace IGym.DietGenerator.Models
 {
     public class TimeTrace
     {
-        public WeekNames Week { get; set; }
+        public int Week { get; set; }
         public DaysOfTheWeek Day { get; set; }
-        public MealTimeOfDay TimeOfDay { get; set; }
+        public string TimeOfDay { get; set; }
 
         public DateTime DateTime { get; set; }
 
