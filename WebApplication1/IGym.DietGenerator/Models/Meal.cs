@@ -34,7 +34,7 @@ namespace IGym.DietGenerator.Models
         public IEnumerable<ExclusionCondition> MealTags { get; set; } = new List<ExclusionCondition>();
 
         public IEnumerable<MealIngredient> Ingredients { get; set; }
-
+        
         public string ImageUrl { get; set; }
 
         public bool Vegan { get; set; } = false;
@@ -64,7 +64,9 @@ namespace IGym.DietGenerator.Models
                 Vegan = this.Vegan,
                 Vegetarian = this.Vegetarian,
                 LactoseFree = this.LactoseFree,
-                GlutenFree = this.GlutenFree
+                GlutenFree = this.GlutenFree,
+                PreparationTime = this.PreparationTime,
+                Rating = this.Rating
             };
 
             return selected;
@@ -89,7 +91,9 @@ namespace IGym.DietGenerator.Models
                 Vegan = this.Vegan,
                 Vegetarian = this.Vegetarian,
                 LactoseFree = this.LactoseFree,
-                GlutenFree = this.GlutenFree
+                GlutenFree = this.GlutenFree,
+                PreparationTime = this.PreparationTime,
+                Rating = this.Rating
             };
         }
     }

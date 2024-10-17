@@ -51,13 +51,65 @@ namespace IGym.DietGenerator.Factories
                 MealTimeOfDay = mealTimeOfDay,
                 MealTags = conditions,
                 Ingredients = generateIngredients(mealId),
-                Portion = randomPortion(rand)                
+                Portion = randomPortion(rand),
+                ImageUrl = "https://receptneked.hu/wp-content/uploads/2015/12/ozgerinc.jpg",
+                Protein = calculateProtein(rand),
+                Carboydrate = calculateCarboydrate(rand),
+                Fat = calcuateFat(rand),
+                Rating = calcualateRating(rand),
+                PreparationTime = calculatePreparationTime(rand),
+                PreparationSteps = createPreparationSteps(rand)
             };
 
             newMeal.GlutenFree = randomGlutenOrLactoseFree(rand, newMeal);
             newMeal.LactoseFree = randomGlutenOrLactoseFree(rand, newMeal);
 
             return newMeal;
+        }
+
+        private IEnumerable<PreparationStep> createPreparationSteps(Random rand)
+        {
+            List<PreparationStep> result = new List<PreparationStep>();
+
+            int steps = rand.Next(3, 11);
+
+            for (int i = 0; i < steps; i++)
+            {
+                PreparationStep step = new PreparationStep();
+                step.Number = i+1;
+                step.Text = "Fusce efficitur orci eget massa efficitur, nec " +
+                    "pellentesque neque molestie. Nulla vitae quam nec purus posuere bibendum. " +
+                    "In vitae massa at sapien porta ullamcorper.";
+
+                result.Add(step);
+            }
+
+            return result;
+        }
+
+        private int calculatePreparationTime(Random rand)
+        {
+            return rand.Next(30, 120);
+        }
+
+        private int calcualateRating(Random rand)
+        {
+            return rand.Next(0, 5);
+        }
+
+        private int calcuateFat(Random rand)
+        {
+            return rand.Next(5, 35);
+        }
+
+        private int calculateCarboydrate(Random rand)
+        {
+            return rand.Next(5, 35);
+        }
+
+        private int calculateProtein(Random rand)
+        {
+            return rand.Next(5, 35);
         }
 
         private bool randomGlutenOrLactoseFree(Random rand, Meal meal)
@@ -133,7 +185,7 @@ namespace IGym.DietGenerator.Factories
 
             string mealId = meal.MealId;
             var mealTimeOfDay = meal.MealTimeOfDay;
-            var conditions = meal.MealTags;
+            var tags = meal.MealTags;
 
             for (int i = 0; i < variationCount; i++)
             {
@@ -143,9 +195,16 @@ namespace IGym.DietGenerator.Factories
                     MealId = mealId,
                     Calorie = new Calorie(rand.Next(_lowCalorie, _maxCalorie)),
                     MealTimeOfDay = mealTimeOfDay,
-                    MealTags = conditions,
+                    MealTags = tags,
                     Ingredients = meal.Ingredients,
                     Portion = meal.Portion,
+                    ImageUrl = "https://receptneked.hu/wp-content/uploads/2015/12/ozgerinc.jpg",
+                    Protein = calculateProtein(rand),
+                    Carboydrate = calculateCarboydrate(rand),
+                    Fat = calcuateFat(rand),
+                    Rating = calcualateRating(rand),
+                    PreparationTime = calculatePreparationTime(rand),
+                    PreparationSteps = createPreparationSteps(rand)
                 };
 
                 result.Add(newMeal);
@@ -190,7 +249,7 @@ namespace IGym.DietGenerator.Factories
             var availableConditions = repository.GetAll().ToList();
             var random = new Random();
             
-            var beCondition = random.Next(2);
+            var beCondition = random.Next(4);
 
             // no conditions
             if(beCondition == 0 || beCondition == 1)
@@ -199,7 +258,7 @@ namespace IGym.DietGenerator.Factories
             }
 
             // there are conditions
-            if (beCondition == 2)
+            if (beCondition > 1)
             {
                 for (int i = 0; i < this._conditionsCount; i++)
                 {
